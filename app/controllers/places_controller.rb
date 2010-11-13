@@ -5,22 +5,19 @@ class PlacesController < ApplicationController
   
   # GET /places
   # GET /places.xml
-  def index
-    if !params[:longitude].blank? and !params[:latitude].blank?
-	   oauth = Foursquare::OAuth.new(ENV['oauth_key'], ENV['oauth_secret'])
-	   oauth.authorize_from_access(ENV['access_token'], ENV['access_secret'])
-	   foursquare = Foursquare::Base.new(oauth)
-	    
-	   foursquare = foursquare.venues :geolat => params[:latitude], :geolong => params[:longitude], :l => 10
-	    
-	   @places = foursquare['groups'][0]['venues']
-	    
-	   respond_to do |format|
-	     format.json { render :json => @places.to_json }
-	     #format.html # index.html.erb
-	     #format.xml  { render :xml => '' }
-	   end
-	 end
+  def results
+    oauth = Foursquare::OAuth.new(ENV['oauth_key'], ENV['oauth_secret'])
+    oauth.authorize_from_access(ENV['access_token'], ENV['access_secret'])
+    foursquare = Foursquare::Base.new(oauth)
+    
+    foursquare = foursquare.venues :geolat => params[:latitude], :geolong => params[:longitude], :l => 10
+    
+    @places = foursquare['groups'][0]['venues']
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => '' }
+    end
   end
   
   # GET /places/1

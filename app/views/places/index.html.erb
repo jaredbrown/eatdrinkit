@@ -1,3 +1,13 @@
-<h1>Places</h1>
-
-<%= render :partial => 'place', :collection => @places %>
+<h1>Loading your location…</h1>
+<script type="text/javascript">
+$(document).ready(function() {
+	var location;
+	var result;
+	
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+  			window.location.replace("/places/results?longitude=" + position.coords.longitude + "&latitude=" + position.coords.latitude);
+		});
+  	}
+});
+</script>
