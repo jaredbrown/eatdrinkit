@@ -6,6 +6,12 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     
+    oauth = Foursquare::OAuth.new(ENV['oauth_key'], ENV['oauth_secret'])
+    oauth.authorize_from_access(ENV['access_token'], ENV['access_secret'])
+    foursquare = Foursquare::Base.new(oauth)
+
+    @place = foursquare.venue :vid => @review.venue_id
+    
     respond_to do |format|
       format.html # show.html.erb
     end
@@ -33,22 +39,9 @@ class ReviewsController < ApplicationController
     oauth.authorize_from_access(ENV['access_token'], ENV['access_secret'])
     foursquare = Foursquare::Base.new(oauth)
 
-logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> @review: ' + @review.inspect
-    
     venue = foursquare.venue :vid => @review.venue_id
     
-logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> venue: ' + venue.inspect
-    
-    # place = Place.find_or_create_by_venue_id(@review.venue_id, :latitude => venue['geolat'], :longitude => venue['geolong'])
-    place = Place.find_by_venue_id(@review.venue_id)
-    
-    unless(place)
-      place = Place.new(:venue_id => @review.venue_id, :latitude => venue['geolat'], :longitude => venue['geolong'])
-      outcome = place.save
-    end
-    
-logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> place: ' + place.inspect
-logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> outcome: ' + outcome.inspect
+    place = Place.find_or_create_by_venue_id(@review.venue_id, :latitude => venue['geolat'], :longitude => venue['geolong'])
     
     @review.place = place
 
