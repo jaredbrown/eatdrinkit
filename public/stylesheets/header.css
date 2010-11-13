@@ -1,0 +1,24 @@
+#header {
+	background-color: #fff;
+}
+
+#logo {
+	float: left;
+}
+
+#logoTitle {
+	float: left;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 2.5em;
+	font-weight: bold;
+	vertical-align: middle;
+	margin-top: 40px;
+}
+
+#toolbar {
+	float: right;
+	padding: 15px 10px 5px 0px;
+}
+	#toolbar .text {
+		color: #777;
+	}

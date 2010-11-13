@@ -1,0 +1,50 @@
+<div class="introduction">
+	<h4>Description</h4>
+	You are editing a user profile.  Changing these values may affect the user's ability to login.
+</div>
+
+<h3>Profile</h3>
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+
+	<table class="user fancy">
+		<thead>
+			<tr>
+				<td>Attribute</td>
+				<td>Value</td>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr>
+				<td colspan="2">
+					<%= f.submit "Update" %>
+				</td>
+			</tr>
+		</tfoot>
+		<tbody>
+			<tr class="odd">
+				<td class="first"><%= f.label :email %></td>
+				<td class="last"><%= f.text_field :email %></td>
+			</tr>
+			<tr class="even">
+				<td class="first"><%= f.label :password %></td>
+				<td class="last"><%= f.password_field :password %></td>
+			</tr>
+			<tr class="odd">
+				<td class="first"><%= f.label :password_confirmation, 'Confirm Password' %></td>
+				<td class="last"><%= f.password_field :password_confirmation %></td>
+			</tr>
+		</tbody>
+	</table>
+<% end %>
+
+<h3>Preferences</h3>
+
+<h4>
+	<% if @preferences %>
+		<%= link_to 'Change Your Preferences', edit_preference_path(@preferences) %>
+	<% else %>
+		<%= link_to 'Set Your Preferences', new_preference_path %>
+	<% end %>
+</h4>

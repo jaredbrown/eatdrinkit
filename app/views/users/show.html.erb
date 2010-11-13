@@ -1,0 +1,28 @@
+<div class="introduction">
+	<h4>Description</h4>
+	This is a user profile.
+</div>
+
+<h3>Profile</h3>
+
+<table class="user fancy">
+	<thead>
+		<tr>
+			<td>Attribute</td>
+			<td>Value</td>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<td colspan="2">
+				<%= link_to 'Edit Profile', edit_user_path(@user) %>
+			</td>
+		</tr>
+	</tfoot>
+	<tbody>
+		<tr class="odd">
+			<td class="first">Email</td>
+			<td class="last"><%=h @user.email %></td>
+		</tr>
+	</tbody>
+</table>

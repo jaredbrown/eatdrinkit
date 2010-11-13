@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+	  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	  <title>EatDrink.it</title>
+		
+		<%= stylesheet_link_tag 'default' %>
+		<%= stylesheet_link_tag 'signed-in' %>
+		<%= stylesheet_link_tag 'header' %>
+		<%= stylesheet_link_tag 'footer' %>
+		<%= stylesheet_link_tag 'navigation' %>
+		<%= stylesheet_link_tag 'tables' %>
+		
+		<!-- jQuery -->
+		<%= javascript_include_tag 'jquery' %>
+		<%= javascript_include_tag 'jquery-ui' %>
+		<%= javascript_include_tag 'jrails' %>
+	</head>
+	<body>
+		<div id="container">
+			<div id="header">
+				<%= #link_to(image_tag('logo.png'), root_url, { :id => 'logo' }) 
+%>
+				<%= link_to('EatDrink.it', root_url, { :id => 'logoTitle' }) %>
+				<div style="float: right; padding: 10px;">
+					<%= link_to current_user.email, edit_user_path(current_user) %> |
+					<%= link_to 'Logout', logout_path %>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+			<%= render :partial => '/home/navigation' %>
+			<div id="content">
+				<%= yield %>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+		<%= render :partial => '/home/footer' %>
+	</body>
+</html>
