@@ -1,0 +1,20 @@
+$(document).ready(function() {
+	var location;
+	var result;
+	
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+  			location = position.coords;
+  			$.ajax({
+  				url: "places",
+  				data: "longitude=" + location.longitude + "&latitude=" + location.latitude,
+  				dataType: "json",
+  				success: function(data, textStatus, xhr) {
+  					$.each(data, function(index, stuff) {
+  						$("#content").append("<p>" + data[index].address + "</p>");
+  					});
+  				}
+  			});
+		});
+  	}
+});
