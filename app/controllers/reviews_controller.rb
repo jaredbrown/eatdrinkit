@@ -41,7 +41,15 @@ class ReviewsController < ApplicationController
 
     venue = foursquare.venue :vid => @review.venue_id
     
-    place = Place.find_or_create_by_venue_id(@review.venue_id, :latitude => venue['geolat'], :longitude => venue['geolong'])
+    #place = Place.find_or_create_by_venue_id(@review.venue_id, :latitude => venue['geolat'], :longitude => venue['geolong'])
+    place = Place.find_by_venue_id(@review.venue_id)
+    
+    unless(place)
+      place = Place.new(:venue_id => @review.venue_id, :latitude => venue['geolat'], :longitude => venue['geolong'])
+      outcome = place.save
+    end
+    
+logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>> place: ' + place.inspect
     
     @review.place = place
 
