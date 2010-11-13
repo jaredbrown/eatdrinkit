@@ -6,5 +6,6 @@ class Review < ActiveRecord::Base
   
   validates_length_of   :menu_item, :is => 80
   
+  belongs_to :users
   belongs_to :places
 end
