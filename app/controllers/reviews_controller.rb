@@ -49,8 +49,6 @@ class ReviewsController < ApplicationController
       outcome = place.save
     end
     
-logger.info '>>>>>>>>>>>>>>>>>>>>>>>>>>> place: ' + place.inspect
-    
     @review.place = place
 
     respond_to do |format|

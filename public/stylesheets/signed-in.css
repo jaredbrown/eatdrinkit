@@ -32,10 +32,8 @@ h4 {
 
 #container {
 	position: relative;
-	width: 880px;
 	margin: 0 auto;
 	background-color: #fff;
-	border: 2px solid #b1c0c9;
 }
 
 #content {
