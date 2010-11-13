@@ -24,11 +24,6 @@
 				<%= #link_to(image_tag('logo.png'), root_url, { :id => 'logo' }) 
 %>
 				<%= link_to('EatDrink.it', root_url, { :id => 'logoTitle' }) %>
-				<div style="float: right; padding: 10px;">
-					<%= link_to current_user.email, edit_user_path(current_user) %> |
-					<%= link_to 'Logout', logout_path %>
-				</div>
-				<div style="clear: both;"></div>
 			</div>
 			<%= render :partial => '/home/navigation' %>
 			<div id="content">

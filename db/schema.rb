@@ -12,6 +12,7 @@
 ActiveRecord::Schema.define(:version => 20090725154202) do
 
   create_table "users", :force => true do |t|
+    t.string   "username",                  :limit => 30
     t.string   "email"
     t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40

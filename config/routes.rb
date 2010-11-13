@@ -13,8 +13,11 @@ ActionController::Routing::Routes.draw do |map|
   map.reset_password '/reset_password/:id', :controller => 'passwords', :action => 'edit'
   map.change_password '/change_password', :controller => 'accounts', :action => 'edit'
 
+  # map.resource :home, :controller => 'home', :collection => { :authorize => :get, :test => :get }
+  map.resources :places
+
   # Root Resource
-  map.root :controller => 'home'
+  map.root :controller => 'places'
 
   # The priority is based upon order of creation: first created -> highest priority.
 
