@@ -1,0 +1,54 @@
+#mainNavigation {
+	background-image: url(/images/navigation.png);
+	border-top: 3px solid #ccc;
+	border-bottom: 3px solid #ccc;
+	height: 40px;
+}
+	#mainNavigation a {
+		color: #fff;
+		font-size: 12px;
+		font-weight: bold;
+		margin-left: 20px;
+	}
+	#mainNavigation a:hover {
+		color: #f9d33d;
+	}
+	
+	#mainNavigation #navigationLinks {
+		float: left;
+		margin-top: 13px;
+	}
+		#mainNavigation #navigationLinks .selected {
+			color: #8dc2f3;
+		}
+	
+	#mainNavigation #search {
+		float: right;
+		margin: 8px 5px 0 0;
+	}
+	
+		#mainNavigation #search label {
+		color: #fff;
+	}
+
+#subNavigation {
+	background: #777;
+	border-bottom: 2px solid #ccc;
+	height: 40px;
+}
+	#subNavigation a {
+		color: #fff;
+		font-size: 10px;
+		font-weight: bold;
+		margin-left: 20px;
+	}
+	#subNavigation a:hover {
+		color: #f9d33d;
+	}
+
+#subNavigationLinks {
+	padding-top: 13px;
+}
+	#subNavigationLinks .selected {
+		color: #8dc2f3;
+	}
