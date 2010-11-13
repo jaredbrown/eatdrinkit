@@ -9,7 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090725154202) do
+ActiveRecord::Schema.define(:version => 20101113164844) do
+
+  create_table "places", :force => true do |t|
+    t.string   "venue_id",   :null => false
+    t.string   "latitude",   :null => false
+    t.string   "longitude",  :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "reviews", :force => true do |t|
+    t.string   "venue_id"
+    t.string   "menu_item",  :limit => 80
+    t.integer  "liked",      :limit => 1
+    t.integer  "user_id"
+    t.integer  "place_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username",                  :limit => 30

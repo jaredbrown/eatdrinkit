@@ -4,7 +4,7 @@ require 'aasm'
 class User < ActiveRecord::Base
   include AASM
   
-  has_one :preference
+  has_many :reviews
 
   # Virtual attribute for the unencrypted password
   attr_accessor :password

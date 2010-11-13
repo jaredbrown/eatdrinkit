@@ -1,10 +1,11 @@
 class CreateReviews < ActiveRecord::Migration
   def self.up
     create_table :reviews do |t|
-      t.column     :menu_item, :string,  :limit => 80, :null => false
+      t.string     :venue_id
+      t.column     :menu_item, :string,  :limit => 80
       t.column     :liked,     :integer, :limit => 1
-      t.references :user,      :null => false
-      t.references :place,     :null => false
+      t.references :user
+      t.references :place
       t.timestamps
     end
   end

@@ -25,7 +25,7 @@ class SessionController < ApplicationController
     cookies.delete :auth_token
     reset_session
     flash[:notice] = "You have been logged out."
-    redirect_back_or_default('/')
+    redirect_to :places
   end
   
   private
