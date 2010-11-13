@@ -1,11 +1,14 @@
-<h3>New Review</h3>
+<h3>What did you have?</h3>
 
 <% form_for(@review) do |f| %>
   <%= f.error_messages %>
 	<%= f.hidden_field :venue_id %>
 
 	<div>
-		<%= f.label :menu_item %>
+		<p>
+			<%= f.label :menu_item %>
+		</p>
+
 		<%= f.text_area :menu_item, :rows => 2 %>
 	</div>
 
