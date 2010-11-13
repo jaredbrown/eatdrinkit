@@ -1,8 +1,13 @@
-<div>
-	<%= place.inspect %>
+<div class="place">
+	<%= image_tag place['primarycategory']['iconurl'], :class => 'icon' if place['primarycategory'] %>
 	
-	<%= place['name'] %><br />
-	<%= place['address'] %> - <%= place['distance'] %> meters away
+	<div class="meta">
+		<b><%= place['name'] %></b><br />
+		<%= place['address'] if place['address'] %> <%= "(#{place['crossstreet']})" if place['crossstreet'] %><br />
+		<%= place['distance'] %> meters away<br />
+		<br />
+		<%= link_to 'View details', place_path(place['id']) %>
+	</div>
 	
-	<%= link_to 'View more', place_path(place['id']) %>
-</div><br /><br />
+	<div style="clear: both;"></div>
+</div>

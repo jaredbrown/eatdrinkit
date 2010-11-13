@@ -1,36 +1,26 @@
-#mainNavigation {
-	background-image: url(/images/navigation.png);
-	border-top: 3px solid #ccc;
-	border-bottom: 3px solid #ccc;
-	height: 40px;
+#header {
+	background-color: #efefef;
 }
-	#mainNavigation a {
-		color: #fff;
-		font-size: 12px;
-		font-weight: bold;
-		margin-left: 20px;
-	}
-	#mainNavigation a:hover {
-		color: #f9d33d;
-	}
-	
-	#mainNavigation #navigationLinks {
-		float: left;
-		margin-top: 13px;
-	}
-		#mainNavigation #navigationLinks .selected {
-			color: #8dc2f3;
-		}
-	
-	#mainNavigation #search {
-		float: right;
-		margin: 8px 5px 0 0;
-	}
-	
-		#mainNavigation #search label {
-		color: #fff;
-	}
 
+#logo {
+	float: left;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+#navigation {
+	background-image: url(/images/navigation.png);
+	border-bottom: 1px solid #ccc;
+	padding: 10px;
+}
+
+	#navigation #links {
+		font-size: 10px;
+		margin-left: 10px;
+		float: right;
+		font-size: 14px;
+	}
+	
 #subNavigation {
 	background: #777;
 	border-bottom: 2px solid #ccc;

@@ -38,19 +38,6 @@ img {
 	border-bottom: 3px solid #CCC;
 }
 
-#actionsDiv {
-	border: 1px solid #CCC;
-	padding: 5px;
-	background-color: #EFEFEF;
-}
-
-.revised {
-	color: #FF0000;
-}
-
-.standout {
-	padding: 2px;
-	font-weight: bold;
-	margin-right: 3px;
-	background-color: #ccc;
+h1 {
+	font-size: 14px;
 }

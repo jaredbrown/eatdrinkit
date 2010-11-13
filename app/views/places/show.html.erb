@@ -1,3 +1,7 @@
-<%= @place.inspect %>
+<div>
+	<b><%= @place['name'] %></b>
+</div>
 
-<%= link_to 'New Review', new_review_path(:venue_id => params[:id]) %>
+<p>
+	<%= link_to 'Check out', new_review_path(:venue_id => params[:id]) %>
+</p>
