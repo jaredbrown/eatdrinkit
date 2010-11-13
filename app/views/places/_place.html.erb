@@ -1,7 +1,8 @@
 <div>
-	<%= #place.inspect 
-%>
+	<%= place.inspect %>
 	
 	<%= place['name'] %><br />
 	<%= place['address'] %> - <%= place['distance'] %> meters away
+	
+	<%= link_to 'View more', place_path(place['id']) %>
 </div><br /><br />

@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
 
   # map.resource :home, :controller => 'home', :collection => { :authorize => :get, :test => :get }
   map.resources :places
+  map.resources :reviews
 
   # Root Resource
   map.root :controller => 'places'
