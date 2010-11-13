@@ -10,7 +10,7 @@ class PlacesController < ApplicationController
     oauth.authorize_from_access(ENV['access_token'], ENV['access_secret'])
     foursquare = Foursquare::Base.new(oauth)
     
-    foursquare = foursquare.venues :geolat => params[:latitude], :geolong => params[:longitude], :l => 10
+    foursquare = foursquare.venues :geolat => params[:latitude], :geolong => params[:longitude], :l => 10, :q => 'restaurant'
     
     @places = foursquare['groups'][0]['venues']
     
