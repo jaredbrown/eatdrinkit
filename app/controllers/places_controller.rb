@@ -6,13 +6,9 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.xml
   def results
-    oauth = Foursquare::OAuth.new(ENV['oauth_key'], ENV['oauth_secret'])
-    oauth.authorize_from_access(ENV['access_token'], ENV['access_secret'])
-    foursquare = Foursquare::Base.new(oauth)
+    foursquare = FoursquareVenueQuery.query(params[:latitude], params[:longitude], '10', 'restaurant')
     
-    foursquare = foursquare.venues :geolat => params[:latitude], :geolong => params[:longitude], :l => 10, :q => 'restaurant'
-    
-    @venues = foursquare['groups'][0]['venues']
+    @venues = foursquare['venues']['group'][0]['venue']
     @reviews = {}
     
     @venues.each do |venue|
