@@ -1,5 +1,5 @@
 <p>
-	<%= link_to 'Back to Place', @review.place %>
+	<%= link_to 'Back to Place', @review.place(@place['id']) %>
 </p>
 
 <div>
@@ -9,3 +9,9 @@
 <p>
 	<%= @review.menu_item %>
 </p>
+
+<%= @review.user.username %> on <%= fancy_date(@review.created_at) %>
+
+<% if current_user and current_user.id == @review.user.id %>
+	<%= link_to image_tag('/images/twitter_button.png'), 'http://twitter.com/home?status=' + @review.menu_item + ' at ' + @place['name'] + ' on http://eatdrink.it', :target => '_new' %>
+<% end %>
