@@ -1,7 +1,19 @@
-<div>
+<p>
+	<%= link_to 'Back to Places', '#', :onclick => 'history.go(-1); return false;' %>
+</p>
+
+<h1>
 	<b><%= @venue['name'] %></b>
-</div>
+</h1>
 
 <p>
-	<%= link_to 'Check out', new_review_path(:venue_id => params[:id]) %>
+	<%= link_to image_tag('/images/review_button.png'), new_review_path(:venue_id => params[:id]) %>
 </p>
+
+<h2>Reviews</h2>
+
+<% if @all_reviews %>
+	<%= render :partial => 'reviews/review', :collection => @all_reviews %>
+<% else %>
+	No reviews yet
+<% end %>
