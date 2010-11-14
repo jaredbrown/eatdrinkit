@@ -8,6 +8,10 @@
 	color: #666;
 }
 
+	.place .iconHolder {
+		width: 60px;
+	}
+	
 	.place .icon {
 		float: left;
 		margin-right: 5px;
@@ -16,6 +20,7 @@
 	.place .meta {
 		float: left;
 		line-height: 20px;
+		width: 250px;
 	}
 	
 	.place .meta a {
