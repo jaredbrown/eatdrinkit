@@ -7,7 +7,7 @@
 		</div>
 		
 		<div class="address">
-			<%= place['address'] if place['address'] %> <%= "(#{place['crossstreet']})" if place['crossstreet'] %>
+			<%=h place['address'] if place['address'] %> <%=h "(#{place['crossstreet']})" if place['crossstreet'] %>
 		</div>
 		
 		<%= number_with_precision(place['distance'] * 0.000621371192, :precision => 1) %> miles away
