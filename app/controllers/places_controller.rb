@@ -38,6 +38,7 @@ class PlacesController < ApplicationController
     
     @venue = foursquare.venue :vid => params[:id]
     @all_reviews = Review.find_all_by_venue_id(params[:id])
+    @deals = Deal.find_all_by_venue_id(params[:id])
     
     respond_to do |format|
       format.html # show.html.erb
