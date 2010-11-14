@@ -1,5 +1,5 @@
 #header {
-	background-color: #efefef;
+	background-color: #A4BCA2;
 }
 
 #logo {
@@ -9,16 +9,20 @@
 }
 
 #navigation {
-	background-image: url(/images/navigation.png);
+	background-image: url(/images/black_header_bg.png);
 	border-bottom: 1px solid #ccc;
 	padding: 10px;
 }
 
 	#navigation #links {
-		font-size: 10px;
-		margin-left: 10px;
 		float: right;
 		font-size: 14px;
+		color: #999;
+	}
+	
+	#navigation #links a {
+		color: #fff;
+		letter-spacing: 0.5px;
 	}
 	
 #subNavigation {

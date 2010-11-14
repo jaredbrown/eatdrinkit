@@ -2,11 +2,15 @@
 	<%= image_tag place['primarycategory']['iconurl'], :class => 'icon' if place['primarycategory'] %>
 	
 	<div class="meta">
-		<b><%= place['name'] %></b><br />
-		<%= place['address'] if place['address'] %> <%= "(#{place['crossstreet']})" if place['crossstreet'] %><br />
-		<%= place['distance'] %> meters away<br />
-		<br />
-		<%= link_to 'View details', place_path(place['id']) %>
+		<div>
+			<%= link_to place['name'], place_path(place['id']) %></b>
+		</div>
+		
+		<div class="address">
+			<%= place['address'] if place['address'] %> <%= "(#{place['crossstreet']})" if place['crossstreet'] %>
+		</div>
+		
+		<%= number_with_precision(place['distance'] * 0.000621371192, :precision => 1) %> miles away
 	</div>
 	
 	<div style="clear: both;"></div>
