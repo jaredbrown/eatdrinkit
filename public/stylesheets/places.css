@@ -9,18 +9,18 @@
 }
 
 	.place .iconHolder {
-		width: 60px;
+		float: left;
+		width: 40px;
 	}
 	
 	.place .icon {
-		float: left;
 		margin-right: 5px;
 	}
 
 	.place .meta {
 		float: left;
 		line-height: 20px;
-		width: 250px;
+		width: 220px;
 	}
 	
 	.place .meta a {
