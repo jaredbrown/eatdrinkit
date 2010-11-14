@@ -3,7 +3,7 @@ body {
 	padding: 0;
 	font-family: Helvetica, Arial, Verdana, sans-serif;
 	color: #000;
-	font-size: 11px;
+	font-size: 11px;;
 }
 
 a {
@@ -40,10 +40,4 @@ img {
 
 h1 {
 	font-size: 14px;
-}
-
-@media screen and (max-device-width: 480px){
-	body{
-	  -webkit-text-size-adjust: none;
-	}
 }
