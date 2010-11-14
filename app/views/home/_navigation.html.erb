@@ -1,8 +1,6 @@
 <div id="header">
 	<div id="navigation">
-		<%= link_to 'EatDrink.it', root_url, { :id => 'logo' } %>
-		
-		<!-- image_tag('/images/LogoRough78x20_2.png', :alt => 'EatDrink.it') -->
+		<%= link_to image_tag('/images/logo.png', :alt => 'EatDrink.it'), root_url, { :id => 'logo' } %>
 		
 		<div id="links">
 			<% if current_user %>
