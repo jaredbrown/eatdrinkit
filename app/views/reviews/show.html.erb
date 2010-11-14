@@ -3,15 +3,20 @@
 </p>
 
 <div>
-	<b><%= @place['name'] %></b>
+	<b><%=h @place['name'] %></b>
 </div>
 
 <p>
-	<%= @review.menu_item %>
+	<%=h @review.menu_item %>
 </p>
 
-<%= @review.user.username %> on <%= fancy_date(@review.created_at) %>
+<%=h @review.user.username %> on <%= fancy_date(@review.created_at) %>
 
 <% if current_user and current_user.id == @review.user.id %>
-	<%= link_to image_tag('/images/twitter_button.png'), 'http://twitter.com/home?status=' + @review.menu_item + ' at ' + @place['name'] + ' on http://eatdrink.it', :target => '_new' %>
+	<h1>Share on</h1>
+	
+	<p>
+		<%= link_to image_tag('/images/twitter_button.gif'), 'http://twitter.com/home?status=' + @review.menu_item.gsub(/&/, 'and').gsub(/\s/, '+') + '+at+' + @place['name'].gsub(/&/, 'and').gsub(/\s/, '+') + '+on+http://eatdrink.it', :target => '_new' %>
+		<%= link_to image_tag('/images/facebook_button.gif'), "http://www.facebook.com/sharer.php?u=#{review_url(@review)}", :target => '_new' %>
+	</p>
 <% end %>
