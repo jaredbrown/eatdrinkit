@@ -13,9 +13,9 @@ ActionController::Routing::Routes.draw do |map|
   map.reset_password '/reset_password/:id', :controller => 'passwords', :action => 'edit'
   map.change_password '/change_password', :controller => 'accounts', :action => 'edit'
 
-  # map.resource :home, :controller => 'home', :collection => { :authorize => :get, :test => :get }
   map.resources :places, :collection => { :results => :get }
   map.resources :reviews
+  map.resources :deals
 
   # Root Resource
   map.root :controller => 'places'

@@ -1,5 +1,5 @@
 <p>
-	<%= link_to 'Back to Place', '#', :onclick => 'history.go(-1); return false;' %>
+	<%= link_to 'Back to Place', @review.place %>
 </p>
 
 <div>
@@ -9,7 +9,3 @@
 <p>
 	<%= @review.menu_item %>
 </p>
-
-<div>
-	<%= link_to 'Back to restaurant', place_path(@place['id']) %>
-</div>
