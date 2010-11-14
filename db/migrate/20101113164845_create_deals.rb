@@ -9,6 +9,6 @@ class CreateDeals < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :places
+    drop_table :deals
   end
 end

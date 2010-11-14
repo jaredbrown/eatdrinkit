@@ -12,7 +12,7 @@
 ActiveRecord::Schema.define(:version => 20101113164845) do
 
   create_table "deals", :force => true do |t|
-    t.string   "venue_id"
+    t.integer  "venue_id"
     t.string   "subject",    :limit => 60
     t.string   "offer",      :limit => 100
     t.datetime "created_at"
@@ -20,15 +20,15 @@ ActiveRecord::Schema.define(:version => 20101113164845) do
   end
 
   create_table "places", :force => true do |t|
-    t.string   "venue_id",   :null => false
-    t.string   "latitude",   :null => false
-    t.string   "longitude",  :null => false
+    t.integer  "venue_id"
+    t.string   "latitude"
+    t.string   "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "reviews", :force => true do |t|
-    t.string   "venue_id"
+    t.integer  "venue_id"
     t.string   "menu_item",  :limit => 80
     t.integer  "liked",      :limit => 1
     t.integer  "user_id"
