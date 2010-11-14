@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20101113164845) do
 
   create_table "places", :force => true do |t|
     t.integer  "venue_id"
+    t.string   "name"
     t.string   "latitude"
     t.string   "longitude"
     t.datetime "created_at"

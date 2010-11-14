@@ -32,10 +32,10 @@ img {
 #flashbar {
 	text-align: center;
 	font-weight: bold;
-	font-size: 1.2em;
+	font-size: 12px;
 	padding: 5px;
 	background-color: #FFFF99;
-	border-bottom: 3px solid #CCC;
+	border-bottom: 1px solid #CCC;
 }
 
 h1 {

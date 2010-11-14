@@ -8,13 +8,17 @@
 
 <%=h @venue['address'] if @venue['address'] %> <%=h "(#{@venue['crossstreet']})" if @venue['crossstreet'] %>
 
+<% if @deals.size > 0 %>
+	<%= link_to 'Deals &raquo;', deals_path(:venue_id => params[:id]) %>
+<% end %>
+
 <p>
 	<%= link_to image_tag('/images/review_button.png'), new_review_path(:venue_id => params[:id]) %>
 </p>
 
-<% if @deals.size > 0 %>
-	<%= link_to 'Deals &raquo;', deals_path(:venue_id => params[:id]) %>
-<% end %>
+<p>
+	<%= link_to 'Make Reservation', 'http://www.opentable.com/', :target => '_new' %>
+</p>
 
 <h2>What People Had Here</h2>
 

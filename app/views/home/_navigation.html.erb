@@ -1,9 +1,10 @@
 <div id="header">
 	<div id="navigation">
-		<%= link_to 'EatDrink.it', root_url, { :id => 'logo' } %>
+		<%= link_to image_tag('/images/LogoRough20.png', :alt => 'EatDrink.it'), root_url, { :id => 'logo' } %>
 		
 		<div id="links">
 			<% if current_user %>
+				<%= link_to 'Profile', current_user %> |
 				<%= link_to 'Logout', logout_path %>
 			<% else %>
 				<%= link_to 'Login', login_path %> or
@@ -11,6 +12,30 @@
 			<% end %>
 		</div>
 	
+		<div style="clear: both;"></div>
+	</div>
+	
+	<div id="subNavigation">
+		<div id="locate" class="<%= 'selected' if params[:controller] == 'places' and params[:action] == 'index' %>" onclick="document.location.href='<%= root_path %>';">
+			<%= image_tag '/images/map_marker.png', :id => 'locateIcon' %>
+			
+			<div id="locateText">
+				<%= link_to 'Locate', root_path %>
+			</div>
+			
+			<div style="clear: both;"></div>
+		</div>
+		
+		<div id="activities" class="<%= 'selected' if params[:action] == 'activities' %>" onclick="document.location.href='<%= activities_users_path %>';">
+			<%= image_tag '/images/food.png', :id => 'foodIcon' %>
+			
+			<div id="activitiesText">
+				<%= link_to 'Activity', activities_users_path %>
+			</div>
+			
+			<div style="clear: both;"></div>
+		</div>
+		
 		<div style="clear: both;"></div>
 	</div>
 </div>

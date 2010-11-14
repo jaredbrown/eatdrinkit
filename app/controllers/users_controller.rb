@@ -1,9 +1,20 @@
 class UsersController < ApplicationController
-  layout :layout
+  layout 'default'
   
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:show, :edit, :update, :suspend, :unsuspend, :destroy, :purge]
+
+  # GET /users/1
+  def show
+    @user = User.find(params[:id])
+    @reviews = Review.find_all_by_user_id(params[:id])
+  end
+
+  # GET /users/activies
+  def activities
+    @reviews = Review.find(:all, :limit => 20)
+  end
 
   # POST /users
   def create

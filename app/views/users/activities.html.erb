@@ -1,0 +1,7 @@
+<h2>What People Had Recently</h2>
+
+<% if @reviews.size > 0 %>
+	<%= render :partial => 'reviews/review', :collection => @reviews %>
+<% else %>
+	No reviews yet
+<% end %>

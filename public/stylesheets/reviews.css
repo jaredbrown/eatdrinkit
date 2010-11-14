@@ -1,3 +1,24 @@
+.review {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #ababab;
+	font-size: 12px;
+	color: #666;
+}
+
+	.review .avatar {
+		float: left;
+		margin-right: 5px;
+	}
+	
+	.review .meta {
+		float: right;
+		width: 250px;
+		line-height: 18px;
+	}
+
 #text_area_div {
 	background-color: #efefef;
 	padding: 5px;
