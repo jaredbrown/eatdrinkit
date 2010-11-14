@@ -10,7 +10,7 @@
 	<%= link_to image_tag('/images/review_button.png'), new_review_path(:venue_id => params[:id]) %>
 </p>
 
-<% if @deals %>
+<% if @deals.size > 0 %>
 	<%= link_to 'Deals &raquo;', deals_path(:venue_id => params[:id]) %>
 <% end %>
 
