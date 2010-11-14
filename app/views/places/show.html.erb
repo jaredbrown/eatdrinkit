@@ -14,7 +14,7 @@
 	<%= link_to 'Deals &raquo;', deals_path(:venue_id => params[:id]) %>
 <% end %>
 
-<h2>Reviews</h2>
+<h2>What People Had Here</h2>
 
 <% if @all_reviews.size > 0 %>
 	<%= render :partial => 'reviews/review', :collection => @all_reviews %>
