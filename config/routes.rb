@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :places, :collection => { :results => :get }
   map.resources :reviews
   map.resources :deals
+  map.resources :static, :collection => { :about => :get, :faq => :get }
 
   # Root Resource
   map.root :controller => 'places'
