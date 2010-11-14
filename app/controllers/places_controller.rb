@@ -20,6 +20,8 @@ class PlacesController < ApplicationController
       
       unless (review == nil)
         @reviews[venue['id']] = review
+      else
+        @reviews[venue['id']] = Review.new # I don't like dealing with nils in the view
       end
       
     end

@@ -7,4 +7,14 @@ class Review < ActiveRecord::Base
   validates_presence_of :place_id
   
   validates_length_of   :menu_item, :within => 3..80
+  
+  def liked_label
+    if(self.liked == 1)
+      return "Liked"
+    elsif(self.liked == 0)
+      return "Disliked"
+    else
+      return ""
+    end
+  end
 end
