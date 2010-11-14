@@ -37,7 +37,7 @@ class PlacesController < ApplicationController
     foursquare = Foursquare::Base.new(oauth)
     
     @venue = foursquare.venue :vid => params[:id]
-    @all_reviews = Review.find_by_venue_id(params[:place_id])
+    @all_reviews = Review.find_all_by_venue_id(params[:id])
     
     respond_to do |format|
       format.html # show.html.erb
