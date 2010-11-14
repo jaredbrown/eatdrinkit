@@ -16,6 +16,8 @@
 	<%= link_to 'Deals &raquo;', deals_path(:venue_id => params[:id]) %>
 <% end %>
 
+<%= link_to 'Checkin to Foursquare', @foursquare_url %>
+
 <h2>What People Had Here</h2>
 
 <% if @all_reviews.size > 0 %>
