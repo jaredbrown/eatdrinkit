@@ -1,4 +1,4 @@
-<div class="place">
+<div class="place" onclick="document.location.href='<%= place_path(place['id']) %>';">
 	<%= image_tag place['primarycategory']['iconurl'], :class => 'icon' if place['primarycategory'] %>
 	
 	<div class="meta">

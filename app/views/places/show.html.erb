@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 <div>
 	<b><%= @venue['name'] %></b>
 </div>
+=======
+<p>
+	<%= link_to 'Back to Places', '#', :onclick => 'history.go(-1); return false;' %>
+</p>
+
+<h1>
+	<b><%= @place['name'] %></b>
+</h1>
+>>>>>>> 7b8c3c027bb989945ea36ab580a4bff73a0dfd35
 
 <p>
 	<%= link_to 'Check out', new_review_path(:venue_id => params[:id]) %>
