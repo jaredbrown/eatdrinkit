@@ -6,7 +6,7 @@
 	<b><%=h @venue['name'] %></b>
 </h1>
 
-<%=h place['address'] if place['address'] %> <%=h "(#{place['crossstreet']})" if place['crossstreet'] %>
+<%=h @venue['address'] if @venue['address'] %> <%=h "(#{@venue['crossstreet']})" if @venue['crossstreet'] %>
 
 <p>
 	<%= link_to image_tag('/images/review_button.png'), new_review_path(:venue_id => params[:id]) %>
