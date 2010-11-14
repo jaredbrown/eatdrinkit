@@ -10,7 +10,7 @@
 	<%=h @review.menu_item %>
 </p>
 
-<%=h @review.user.username %> on <%= fancy_date(@review.created_at) %>
+<%= @review.liked == 1 ? 'Liked by' : 'Disliked by' %> <%=h @review.user.username %> on <%= fancy_date(@review.created_at) %>
 
 <% if current_user and current_user.id == @review.user.id %>
 	<h1>Share on</h1>

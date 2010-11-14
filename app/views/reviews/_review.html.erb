@@ -5,7 +5,7 @@
 	
 	<div class="meta">
 		<div>
-			<%=h truncate(review.menu_item, 60, '...') %>
+			<%= link_to truncate(h(review.menu_item), 60, '...'), review %>
 		</div>
 		
 		<div>
@@ -13,7 +13,7 @@
 		</div>
 		
 		<div>
-			<%= link_to review.user.username, review.user %>
+			<%= review.liked == 1 ? 'Liked by' : 'Disliked by' %> <%= link_to review.user.username, review.user %>
 		</div>
 	</div>
 	
