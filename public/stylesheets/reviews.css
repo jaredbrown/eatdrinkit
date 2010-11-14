@@ -19,6 +19,11 @@
 		line-height: 20px;
 	}
 
+	.review .menu_item {
+		font-size: 14px;
+		color: #222;
+	}
+
 #text_area_div {
 	background-color: #efefef;
 	padding: 5px;

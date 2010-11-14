@@ -4,7 +4,7 @@
 	</div>
 	
 	<div class="meta">
-		<div>
+		<div class="menu_item">
 			<%= link_to truncate(h(review.menu_item), 60, '...'), review %>
 		</div>
 		
@@ -14,6 +14,10 @@
 		
 		<div>
 			<%= review.liked == 1 ? 'Liked by' : 'Disliked by' %> <%= link_to review.user.username, review.user %>
+		</div>
+		
+		<div>
+			<%= time_ago_in_words(review.created_at) %> ago
 		</div>
 	</div>
 	
