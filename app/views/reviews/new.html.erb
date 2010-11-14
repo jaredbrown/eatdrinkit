@@ -1,3 +1,7 @@
+<p>
+	<%= link_to 'Back to Restaurant', '#', :onclick => 'history.go(-1); return false;' %>
+</p>
+
 <h3>What did you have?</h3>
 
 <% form_for(@review) do |f| %>
@@ -5,8 +9,12 @@
 	<%= f.hidden_field :venue_id %>
 
 	<div>
-		<%= f.text_area :menu_item, :rows => 2 %>
+		<%= f.text_area :menu_item, :id => 'menu_item_text_area' %>
 	</div>
+	
+	<p>
+		80 char max
+	</p>
 
 	<p>
 		<%= link_to 'Cancel', '#', :onclick => 'history.go(-1); return false;' %> |

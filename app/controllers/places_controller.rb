@@ -12,7 +12,17 @@ class PlacesController < ApplicationController
     
     foursquare = foursquare.venues :geolat => params[:latitude], :geolong => params[:longitude], :l => 10, :q => 'restaurant'
     
-    @places = foursquare['groups'][0]['venues']
+    @venues = foursquare['groups'][0]['venues']
+    @reviews = {}
+    
+    @venues.each do |venue|
+      review = Review.find_by_venue_id(venue['id'])
+      
+      unless (review == nil)
+        @reviews[venue['id']] = review
+      end
+      
+    end
     
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +36,7 @@ class PlacesController < ApplicationController
     oauth.authorize_from_access(ENV['access_token'], ENV['access_secret'])
     foursquare = Foursquare::Base.new(oauth)
     
-    @place = foursquare.venue :vid => params[:id]
+    @venue = foursquare.venue :vid => params[:id]
     @all_reviews = Review.find_by_venue_id(params[:place_id])
     
     respond_to do |format|

@@ -50,6 +50,14 @@ class ReviewsController < ApplicationController
     end
     
     @review.place = place
+    
+    # Dislike - 0
+    # Like - 1
+    if(params[:commit] == 'Like')
+      @review.liked = 1
+    else
+      @review.liked = 0
+    end
 
     respond_to do |format|
       if @review.save
