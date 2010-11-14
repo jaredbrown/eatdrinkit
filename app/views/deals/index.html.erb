@@ -1,0 +1,7 @@
+<p>
+	<%= link_to 'Back to Place', '#', :onclick => 'history.go(-1); return false;' %>
+</p>
+
+<h1>Deals</h1>
+
+<%= render :partial => 'deal', :collection => @deals %>

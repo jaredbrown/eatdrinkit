@@ -1,9 +1,9 @@
 class CreatePlaces < ActiveRecord::Migration
   def self.up
     create_table :places do |t|
-      t.string :venue_id,  :null => false
-      t.string :latitude,  :null => false
-      t.string :longitude, :null => false
+      t.integer :venue_id
+      t.string :latitude
+      t.string :longitude
       t.timestamps
     end
   end

@@ -1,18 +1,24 @@
 <p>
-	<%= link_to 'Back to Places', '#', :onclick => 'history.go(-1); return false;' %>
+	<%= link_to 'Back to Places', places_path %>
 </p>
 
 <h1>
-	<b><%= @venue['name'] %></b>
+	<b><%=h @venue['name'] %></b>
 </h1>
+
+<%=h @venue['address'] if @venue['address'] %> <%=h "(#{@venue['crossstreet']})" if @venue['crossstreet'] %>
 
 <p>
 	<%= link_to image_tag('/images/review_button.png'), new_review_path(:venue_id => params[:id]) %>
 </p>
 
-<h2>Reviews</h2>
+<% if @deals.size > 0 %>
+	<%= link_to 'Deals &raquo;', deals_path(:venue_id => params[:id]) %>
+<% end %>
 
-<% if @all_reviews %>
+<h2>What People Had Here</h2>
+
+<% if @all_reviews.size > 0 %>
 	<%= render :partial => 'reviews/review', :collection => @all_reviews %>
 <% else %>
 	No reviews yet

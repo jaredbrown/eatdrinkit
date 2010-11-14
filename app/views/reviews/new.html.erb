@@ -1,5 +1,5 @@
 <p>
-	<%= link_to 'Back to Place', '#', :onclick => 'history.go(-1); return false;' %>
+	<%= link_to 'Back to Place', place_path(@review.venue_id) %>
 </p>
 
 <h3>What did you have?</h3>
@@ -8,7 +8,7 @@
   <%= f.error_messages %>
 	<%= f.hidden_field :venue_id %>
 
-	<div>
+	<div id="text_area_div">
 		<%= f.text_area :menu_item, :id => 'menu_item_text_area' %>
 	</div>
 	
