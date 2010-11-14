@@ -18,6 +18,7 @@
 		float: right;
 		font-size: 14px;
 		color: #999;
+		margin-top: 5px;
 	}
 	
 	#navigation #links a {
@@ -39,7 +40,7 @@
 
 	#subNavigation #locateIcon {
 		float: left;
-		margin: 10px 0 0 15px;
+		margin: 5px 0 0 15px;
 	}
 	
 	#subNavigation #locateText {
@@ -59,7 +60,7 @@
 	
 	#subNavigation #foodIcon {
 		float: left;
-		margin: 10px 0 0 15px;
+		margin: 5px 0 0 15px;
 	}
 	
 	#subNavigation #activitiesText {
