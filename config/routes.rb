@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   # Basic Account Resources
-  map.resources :users
+  map.resources :users, :collection => { :activities => :get }
   map.resource  :session, :controller => 'session'
   map.signup '/signup', :controller => 'users', :action => 'new'
   map.login '/login', :controller => 'session', :action => 'new'
@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :places, :collection => { :results => :get }
   map.resources :reviews
   map.resources :deals
+  map.resources :static, :collection => { :about => :get, :faq => :get }
 
   # Root Resource
   map.root :controller => 'places'

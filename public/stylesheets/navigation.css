@@ -6,6 +6,7 @@
 	float: left;
 	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
 	font-size: 14px;
+	color: #fff;
 }
 
 #navigation {
@@ -18,6 +19,7 @@
 		float: right;
 		font-size: 14px;
 		color: #999;
+		margin-top: 5px;
 	}
 	
 	#navigation #links a {
@@ -26,23 +28,58 @@
 	}
 	
 #subNavigation {
-	background: #777;
+	background-color: #777;
 	border-bottom: 2px solid #ccc;
-	height: 40px;
 }
+
+	#subNavigation #locate {
+		float: left;
+		width: 159px;
+		height: 40px;
+		border-right: 1px solid #ccc;
+	}
+
+	#subNavigation #locateIcon {
+		float: left;
+		margin: 5px 0 0 15px;
+	}
+	
+	#subNavigation #locateText {
+		float: left;
+		margin-top: 15px;
+	}
+	
+		#subNavigation #locateText a {
+			font-size: 14px;
+		}
+	
+	#subNavigation #activities {
+		float: left;
+		width: 160px;
+		height: 40px;
+	}
+	
+	#subNavigation #foodIcon {
+		float: left;
+		margin: 5px 0 0 15px;
+	}
+	
+	#subNavigation #activitiesText {
+		float: left;
+		margin-top: 15px;
+	}
+	
+		#subNavigation #activitiesText a {
+			font-size: 14px;
+		}
+
 	#subNavigation a {
 		color: #fff;
 		font-size: 10px;
 		font-weight: bold;
 		margin-left: 20px;
 	}
-	#subNavigation a:hover {
-		color: #f9d33d;
-	}
 
-#subNavigationLinks {
-	padding-top: 13px;
-}
-	#subNavigationLinks .selected {
-		color: #8dc2f3;
+	#subNavigation .selected {
+		background-color: #8dc2f3;
 	}

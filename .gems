@@ -1,1 +1,2 @@
 foursquare --version '0.3.4' --source http://rubygems.org
+gravtastic --version '3.1.0' --source http://gems.github.com

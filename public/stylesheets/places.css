@@ -8,18 +8,23 @@
 	color: #666;
 }
 
-	.place .icon {
+	.place .iconHolder {
 		float: left;
+		width: 40px;
+	}
+	
+	.place .icon {
 		margin-right: 5px;
 	}
 
 	.place .meta {
 		float: left;
-		line-height: 18px;
+		line-height: 20px;
+		width: 220px;
 	}
 	
 	.place .meta a {
-		color: #FF9900;
+		color: #3399ff;
 		font-size: 14px;
 		letter-spacing: 0.5px;
 		font-weight: bold;

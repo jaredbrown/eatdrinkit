@@ -1,6 +1,6 @@
 # This controller handles the login/logout function of the site.  
 class SessionController < ApplicationController
-  layout :layout
+  layout 'default'
 
   # render new.rhtml
   def new
@@ -14,8 +14,9 @@ class SessionController < ApplicationController
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
       redirect_back_or_default('/')
-      flash[:notice] = "Logged in successfully"
+      flash[:notice] = "Logged in"
     else
+      flash[:notice] = 'Login failed'
       render :action => 'new'
     end
   end

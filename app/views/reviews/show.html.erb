@@ -2,15 +2,31 @@
 	<%= link_to 'Back to Place', place_path(@review.venue_id) %>
 </p>
 
-<div>
-	<b><%=h @place['name'] %></b>
+<div class="review">
+	<div class="avatar">
+		<%= link_to image_tag(@review.user.gravatar_url(:size => 35)), @review.user %>
+	</div>
+	
+	<div class="meta">
+		<div class="menu_item">
+			<%=h @review.menu_item %>
+		</div>
+		
+		<div>
+			<%= link_to @review.place.name, place_path(@review.place.venue_id) %><br />
+		</div>
+		
+		<div>
+			<%= @review.liked == 1 ? 'Liked by' : 'Disliked by' %> <%= link_to @review.user.username, @review.user %>
+		</div>
+		
+		<div>
+			<%= time_ago_in_words(@review.created_at) %> ago
+		</div>
+	</div>
+	
+	<div style="clear: both;"></div>
 </div>
-
-<p>
-	<%=h @review.menu_item %>
-</p>
-
-<%=h @review.user.username %> on <%= fancy_date(@review.created_at) %>
 
 <% if current_user and current_user.id == @review.user.id %>
 	<h1>Share on</h1>

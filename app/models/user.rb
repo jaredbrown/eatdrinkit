@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   
   has_many :reviews
 
+  include Gravtastic
+  has_gravatar
+
   # Virtual attribute for the unencrypted password
   attr_accessor :password
 

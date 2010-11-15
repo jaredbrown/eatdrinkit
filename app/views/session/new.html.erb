@@ -1,4 +1,8 @@
-<div style="width: 300px; margin: 20px auto 0 auto; padding: 10px; background-color: #efefef; border: 3px solid #ccc;">
+<div>
+	<p>
+		<b>Don't have an account? <%= link_to 'Sign Up', signup_path %></b>
+	</p>
+	
 	<% form_tag session_path do -%>
 	<p><label for="email">Email</label><br/>
 	<%= text_field_tag 'email' %></p>
@@ -9,10 +13,6 @@
 	<p><label for="remember_me">Remember me:</label>
 	<%= check_box_tag 'remember_me' %></p>
 	
-	<p><%= submit_tag 'Log in' %></p>
+	<p><%= submit_tag 'Login' %></p>
 	<% end -%>
-
-	<div id="actionsDiv">
-		Don't have an account? <%= link_to 'Sign Up', signup_path %>
-	</div>
 </div>

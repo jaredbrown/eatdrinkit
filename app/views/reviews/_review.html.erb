@@ -1,3 +1,25 @@
-<p>
-	<%=h truncate(review.menu_item, 60, '...') %>
-</p>
+<div class="review">
+	<div class="avatar">
+		<%= link_to image_tag(review.user.gravatar_url(:size => 35)), review.user %>
+	</div>
+	
+	<div class="meta">
+		<div class="menu_item">
+			<%= link_to truncate(h(review.menu_item), 60, '...'), review %>
+		</div>
+		
+		<div>
+			<%= link_to review.place.name, place_path(review.place.venue_id) %><br />
+		</div>
+		
+		<div>
+			<%= review.liked == 1 ? 'Liked by' : 'Disliked by' %> <%= link_to review.user.username, review.user %>
+		</div>
+		
+		<div>
+			<%= time_ago_in_words(review.created_at) %> ago
+		</div>
+	</div>
+	
+	<div style="clear: both;"></div>
+</div>

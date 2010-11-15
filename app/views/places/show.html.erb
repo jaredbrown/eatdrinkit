@@ -1,5 +1,5 @@
 <p>
-	<%= link_to 'Back to Places', places_path %>
+	<%= link_to 'Go Back', '#', :onclick => 'history.go(-1); return false;' %>
 </p>
 
 <h1>
@@ -8,17 +8,23 @@
 
 <%=h @venue['address'] if @venue['address'] %> <%=h "(#{@venue['crossstreet']})" if @venue['crossstreet'] %>
 
-<p>
-	<%= link_to image_tag('/images/review_button.png'), new_review_path(:venue_id => params[:id]) %>
-</p>
-
 <% if @deals.size > 0 %>
 	<%= link_to 'Deals &raquo;', deals_path(:venue_id => params[:id]) %>
 <% end %>
 
+<p>
+	<%= link_to image_tag('/images/review_button.png'), new_review_path(:venue_id => params[:id]) %>
+</p>
+
+<p>
+	<%= link_to 'Make Reservation', 'http://www.opentable.com/', :target => '_new' %>
+</p>
+
 <%= link_to 'Checkin to Foursquare', @foursquare_url %>
 
 <h2>What People Had Here</h2>
+=======
+<h2>What People Had</h2>
 
 <% if @all_reviews.size > 0 %>
 	<%= render :partial => 'reviews/review', :collection => @all_reviews %>

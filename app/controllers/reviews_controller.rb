@@ -45,7 +45,7 @@ class ReviewsController < ApplicationController
     place = Place.find_by_venue_id(@review.venue_id)
     
     unless(place)
-      place = Place.new(:venue_id => @review.venue_id, :latitude => venue['geolat'], :longitude => venue['geolong'])
+      place = Place.new(:venue_id => @review.venue_id, :name => venue['name'], :latitude => venue['geolat'], :longitude => venue['geolong'])
       outcome = place.save
     end
     
