@@ -7,7 +7,7 @@ class PlacesController < ApplicationController
   # GET /places.xml
   def results
     foursquare = FoursquareVenueQuery.query(params[:latitude], params[:longitude], '10', 'restaurant')
-    
+        
     @venues = foursquare['venues']['group'][0]['venue']
     @reviews = {}
     
@@ -35,7 +35,14 @@ class PlacesController < ApplicationController
     foursquare = Foursquare::Base.new(oauth)
     
     @venue = foursquare.venue :vid => params[:id]
-    @all_reviews = Review.find_all_by_venue_id(params[:id])
+    
+    if current_user
+      @all_reviews = Review.find_all_by_venue_id(params[:id], :conditions => ['user_id != ?', current_user.id])
+      @my_reviews = Review.find_all_by_venue_id_and_user_id(params[:id], current_user.id)
+    end
+    
+    @all_reviews ||= Review.find_all_by_venue_id(params[:id])
+    
     @deals = Deal.find_all_by_venue_id(params[:id])
     
     respond_to do |format|

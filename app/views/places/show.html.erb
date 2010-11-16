@@ -20,7 +20,13 @@
 	<%= link_to 'Make Reservation', 'http://www.opentable.com/', :target => '_new' %>
 </p>
 
-<h2>What People Had</h2>
+<% if @my_reviews and @my_reviews.size > 0 %>
+	<h2>What You Had</h2>
+
+	<%= render :partial => 'reviews/review', :collection => @my_reviews %>
+<% end %>
+
+<h2>What Other People Had</h2>
 
 <% if @all_reviews.size > 0 %>
 	<%= render :partial => 'reviews/review', :collection => @all_reviews %>
