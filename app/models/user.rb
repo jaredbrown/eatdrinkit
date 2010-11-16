@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
   attr_accessor :password
   
-  #before_save :downcase_email
+  before_save :downcase_email
 
   validates_presence_of     :email
   validates_presence_of     :password,                   :if => :password_required?
