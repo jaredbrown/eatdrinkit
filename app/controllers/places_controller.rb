@@ -3,16 +3,14 @@ class PlacesController < ApplicationController
   #before_filter :login_required
   layout 'default'
   
-  def rescue_action(exception)
-    render :action => 'index'
-  end
+  #def rescue_action(exception)
+  #  render :action => 'index'
+  #end
   
   # GET /places
   # GET /places.xml
   def results  
-    foursquare = FoursquareVenueQuery.query(params[:latitude], params[:longitude], '20', 'restaurant')
-    
-    @venues = foursquare['venues']['group'][0]['venue']
+    @venues = FoursquareVenueQuery.query(params[:latitude], params[:longitude])
     @reviews = {}
     
     @venues.each do |venue|
