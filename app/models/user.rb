@@ -11,6 +11,8 @@ class User < ActiveRecord::Base
 
   # Virtual attribute for the unencrypted password
   attr_accessor :password
+  
+  #before_save :downcase_email
 
   validates_presence_of     :email
   validates_presence_of     :password,                   :if => :password_required?
@@ -66,7 +68,7 @@ class User < ActiveRecord::Base
 
   # Authenticates a user by their email and unencrypted password.  Returns the user or nil.
   def self.authenticate(email, password)
-    u = find :first, :conditions => {:email => email} # need to get the salt
+    u = find :first, :conditions => {:email => email.downcase} # need to get the salt
     u and (u.state == 'confirmed' or u.state == 'unconfirmed') and u.authenticated?(password) ? u : nil
   end
 
@@ -176,6 +178,10 @@ class User < ActiveRecord::Base
 
   def make_password_reset_code
     self.password_reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+  end
+  
+  def downcase_email
+    self.email = self.email.downcase
   end
 
   # This would be used when undeleting someone
