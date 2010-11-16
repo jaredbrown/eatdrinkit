@@ -9,7 +9,9 @@
 <%=h @venue['address'] if @venue['address'] %> <%=h "(#{@venue['crossstreet']})" if @venue['crossstreet'] %>
 
 <% if @deals.size > 0 %>
-	<%= link_to 'Deals &raquo;', deals_path(:venue_id => params[:id]) %>
+	<p>
+		<b><%= link_to 'View Deals &raquo;', deals_path(:venue_id => params[:id]) %></b>
+	</p>
 <% end %>
 
 <p>
