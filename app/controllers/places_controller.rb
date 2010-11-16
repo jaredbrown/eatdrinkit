@@ -58,7 +58,13 @@ class PlacesController < ApplicationController
     session[:request_token] = request_token
     
     @foursquare_url = request_token.authorize_url
-    @all_reviews = Review.find_all_by_venue_id(params[:id])
+    
+    if current_user
+      @all_reviews = Review.find_all_by_venue_id(params[:id], :conditions => ['user_id != ?', current_user.id])
+      @my_reviews = Review.find_all_by_venue_id_and_user_id(params[:id], current_user.id)
+    end
+    
+    @all_reviews ||= Review.find_all_by_venue_id(params[:id])
     @deals = Deal.find_all_by_venue_id(params[:id])
     
     respond_to do |format|

@@ -9,7 +9,9 @@
 <%=h @venue['address'] if @venue['address'] %> <%=h "(#{@venue['crossstreet']})" if @venue['crossstreet'] %>
 
 <% if @deals.size > 0 %>
-	<%= link_to 'Deals &raquo;', deals_path(:venue_id => params[:id]) %>
+	<p>
+		<b><%= link_to 'View Deals &raquo;', deals_path(:venue_id => params[:id]) %></b>
+	</p>
 <% end %>
 
 <p>
@@ -20,9 +22,13 @@
 	<%= link_to 'Make Reservation', 'http://www.opentable.com/', :target => '_new' %>
 </p>
 
-<h2>What People Had Here</h2>
-=======
-<h2>What People Had</h2>
+<% if @my_reviews and @my_reviews.size > 0 %>
+	<h2>What You Had</h2>
+
+	<%= render :partial => 'reviews/review', :collection => @my_reviews %>
+<% end %>
+
+<h2>What Other People Had</h2>
 
 <% if @all_reviews.size > 0 %>
 	<%= render :partial => 'reviews/review', :collection => @all_reviews %>
