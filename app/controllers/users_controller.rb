@@ -13,7 +13,9 @@ class UsersController < ApplicationController
 
   # GET /users/activies
   def activities
-    @reviews = Review.find(:all, :limit => 20)
+    per_page = 10
+    
+    @reviews = Review.paginate(:page => params[:page], :per_page => per_page, :limit => 20, :order => 'created_at DESC')
   end
 
   # POST /users
