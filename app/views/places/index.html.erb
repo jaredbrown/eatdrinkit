@@ -2,6 +2,11 @@
 
 <%= image_tag '/images/loading.gif' %>
 
+<% form_tag '/places/results', :id => 'location' do %>
+  <%= hidden_field :location, :latitude %>
+  <%= hidden_field :location, :longitude %>
+<% end %>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	var location;
@@ -9,8 +14,12 @@ $(document).ready(function() {
 	
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
-  			window.location.replace("/places/results?longitude=" + position.coords.longitude + "&latitude=" + position.coords.latitude);
+			$("#location_latitude")[0].value = position.coords.latitude;
+			$("#location_longitude")[0].value = position.coords.longitude;
+  			$("#location").submit();
 		});
+  	} else {
+  		alert("Uh oh! Your browser won't allow us to get your location.");
   	}
 });
 </script>

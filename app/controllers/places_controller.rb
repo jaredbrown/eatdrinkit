@@ -10,7 +10,8 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.xml
   def results  
-    @venues = FoursquareVenueQuery.query(params[:latitude], params[:longitude])
+    logger.info(params.inspect)
+    @venues = FoursquareVenueQuery.query(params['location']['latitude'], params['location']['longitude'])
     @reviews = {}
     
     @venues.each do |venue|
