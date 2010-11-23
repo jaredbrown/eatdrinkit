@@ -13,13 +13,23 @@ $(document).ready(function() {
 	var result;
 	
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			$("#location_latitude")[0].value = position.coords.latitude;
-			$("#location_longitude")[0].value = position.coords.longitude;
-  			$("#location").submit();
-		});
+		navigator.geolocation.getCurrentPosition(
+		  function(position) {
+			  $("#location_latitude")[0].value = position.coords.latitude;
+			  $("#location_longitude")[0].value = position.coords.longitude;
+			    alert("hoop");
+  			  $("#location").submit();
+		  },
+		  function() {
+		    alert("We had an issue getting your location. Please try again later.");
+		  },
+		  {
+		    enableHighAccuracy: true,
+		    maximumAge: 20000
+		  });
+		  
   	} else {
-  		alert("Uh oh! Your browser won't allow us to get your location.");
+  		alert("Uh oh! Your browser isn't location aware. That means we can't find you.");
   	}
 });
 </script>
