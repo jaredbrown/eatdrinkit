@@ -10,7 +10,11 @@ class PlacesController < ApplicationController
   # GET /places
   # GET /places.xml
   def results  
-    logger.info(params.inspect)
+    if (params['location'].blank?)
+      redirect_to :action => 'index'
+      return
+    end
+    
     @venues = FoursquareVenueQuery.query(params['location']['latitude'], params['location']['longitude'])
     @reviews = {}
     
