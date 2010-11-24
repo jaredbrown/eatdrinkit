@@ -17,7 +17,6 @@ $(document).ready(function() {
 		  function(position) {
 			  $("#location_latitude")[0].value = position.coords.latitude;
 			  $("#location_longitude")[0].value = position.coords.longitude;
-			    alert("hoop");
   			  $("#location").submit();
 		  },
 		  function() {
