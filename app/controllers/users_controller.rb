@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
-  before_filter :find_user, :only => [:show, :edit, :update, :suspend, :unsuspend, :destroy, :purge]
+  before_filter :find_user, :only => [:show, :suspend, :unsuspend, :destroy, :purge]
 
   # GET /users/1
   def show
@@ -16,6 +16,17 @@ class UsersController < ApplicationController
     per_page = 10
     
     @reviews = Review.paginate(:page => params[:page], :per_page => per_page, :limit => 20, :order => 'created_at DESC')
+  end
+  
+  # GET /users/settings
+  def settings
+    @current_user = session[:current_user]
+    @current_user.errors.clear
+    
+    if @current_user.nil?
+      redirect_to '/login'
+      session[:redirect_to] = '/users/settings'
+    end
   end
 
   # POST /users
@@ -35,24 +46,19 @@ class UsersController < ApplicationController
 
   # PUT /users/1
   def update
-    orig_email = @user.email
+    @current_user = session[:current_user]
+    @current_user.attributes = params[:current_user]
     
-    if @user.update_attributes(params[:user])
-      # Mark user as unconfirmed if email address changed
-      if @user.email != orig_email
-        @user.change_email!
-        @user.reconfirm!
-      end
-
-      flash[:notice] = 'User was successfully updated'
+    if @current_user.save
+      flash[:notice] = 'Update successful'
+    else
+      @current_user.reload
     end
     
-    render :action => "edit"
-  end
-
-  # PUT /users/1/edit
-  def edit
-    @preferences = Preference.find_by_user_id(current_user.id)
+    @current_user.password = nil
+    @current_user.password_confirmation = nil
+    
+    render :action => 'settings'
   end
 
   def confirm

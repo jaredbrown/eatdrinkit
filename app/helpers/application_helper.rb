@@ -12,4 +12,8 @@ module ApplicationHelper
   def fancy_date(date)
     h date.strftime("%A, %B %d, %Y")
   end
+  
+  def current_user?(id)
+    !session[:current_user].nil? and session[:current_user].id.to_s == id
+  end
 end

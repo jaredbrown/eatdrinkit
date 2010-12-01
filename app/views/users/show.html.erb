@@ -3,12 +3,14 @@
 </p>
 
 <div>
-	<%= image_tag @user.gravatar_url(:size => 100) %>
+  <%= image_tag @user.gravatar_url(:size => 100) %>
 </div>
 
+<% if current_user?(params[:id]) %>
 <p>
-	<b><%= link_to 'Change Photo (Gravatar)', 'http://www.gravatar.com/', :target => '_new' %></b>
+	<b><%= link_to("Profile Settings", { :controller => 'users', :action => 'settings' }) %></b>
 </p>
+<% end %>
 
 <h2>What <%= @user.username.capitalize %> Had</h2>
 
