@@ -1,0 +1,28 @@
+<div>
+<% form_for :current_user, :url => '/users/update' do |f| %>
+  <%= error_messages_for :current_user %>
+  <%= flash[:notice] %>
+  
+  <div>
+    <%= image_tag @current_user.gravatar_url(:size => 100) %>
+  </div>
+  
+  <p>
+    <b><%= link_to 'Change Photo (Gravatar)', 'http://www.gravatar.com/', :target => '_new' %></b>
+  </p>
+  
+  <p><label for="email">Email</label><br/>
+  <%= f.text_field :email %></p>
+    
+  <p><label for="password">Password</label><br/>
+  <%= f.password_field :password %></p>
+    
+  <p><label for="password_confirmation">Confirm Password</label><br/>
+  <%= f.password_field :password_confirmation %></p>
+    
+  <p><label for="username">Username</label><br/>
+  <%= f.text_field :username %></p>
+    
+  <p><%= submit_tag 'Update' %></p>
+<% end %>
+</div>
