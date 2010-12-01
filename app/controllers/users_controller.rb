@@ -21,11 +21,12 @@ class UsersController < ApplicationController
   # GET /users/settings
   def settings
     @current_user = session[:current_user]
-    @current_user.errors.clear
     
     if @current_user.nil?
       redirect_to '/login'
       session[:redirect_to] = '/users/settings'
+    else
+      @current_user.errors.clear
     end
   end
 
