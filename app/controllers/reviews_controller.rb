@@ -105,6 +105,6 @@ class ReviewsController < ApplicationController
       else
         return
       end
-      logger.info liked + ' the ' + @review.menu_item.downcase + ' at ' + @review.place.name + ' using the @EatDrinkit web app (http://eatdrink.it/reviews/' + @review.id.to_s + ')'
+      client.update liked + ' the ' + @review.menu_item.downcase + ' at ' + @review.place.name + ' using the @EatDrinkit web app (http://eatdrink.it/reviews/' + @review.id.to_s + ')'
     end
 end
