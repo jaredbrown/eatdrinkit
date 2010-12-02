@@ -21,6 +21,9 @@ class UsersController < ApplicationController
   # GET /users/settings
   def settings
     @current_user = session[:current_user]
+    flash[:notice] = nil
+    @foursquare_oauth_url = foursquare_oauth_url unless @current_user.enable_foursquare
+    @twitter_oauth_url = twitter_oauth_url unless @current_user.enable_twitter
     
     if @current_user.nil?
       redirect_to '/login'
@@ -51,15 +54,43 @@ class UsersController < ApplicationController
     @current_user.attributes = params[:current_user]
     
     if @current_user.save
-      flash[:notice] = 'Update successful'
-    else
-      @current_user.reload
+      flash[:notice] = 'Update successful'  
     end
     
+    @current_user.reload
     @current_user.password = nil
     @current_user.password_confirmation = nil
     
     render :action => 'settings'
+  end
+  
+  def update_social
+    @current_user = session[:current_user]
+    
+    if params['method'] == 'foursquare' || params['method'] == 'twitter'
+      method = params['method']
+    else
+      return redirect_to '/users/settings'
+    end
+    
+    if params['value'] == 'enable'
+      request_token = session[:request_token]
+      access_token = request_token.get_access_token :oauth_verifier => params['oauth_verifier']
+      twitter_user
+      @current_user['enable_' + method] = true
+      @current_user[method + '_oauth_token'] = access_token.token
+      @current_user[method + '_oauth_secret'] = access_token.secret
+    elsif params['value'] == 'disable'
+      @current_user['enable_' + method] = false
+      @current_user[method + '_access_token'] = nil
+      @current_user[method + '_access_secret'] = nil
+    else
+      return redirect_to '/users/settings'
+    end
+    
+    @current_user.save!
+    
+    return redirect_to '/users/settings'
   end
 
   def confirm
@@ -106,5 +137,42 @@ class UsersController < ApplicationController
       return 'blank'
     end
   end
-
+  
+  def foursquare_oauth_url
+    consumer = ::OAuth::Consumer.new(ENV['foursquare_oauth_key'], ENV['foursquare_oauth_secret'], {
+      :site               => 'http://foursquare.com',
+      :scheme             => :header,
+      :http_method        => :post,
+      :request_token_path => '/oauth/request_token',
+      :access_token_path  => '/oauth/access_token',
+      :authorize_path     => '/mobile/oauth/authorize',
+      :proxy              => (ENV['HTTP_PROXY'] || ENV['http_proxy'])
+    })
+    
+    request_token = consumer.get_request_token(:oauth_callback => 'http://' + request.env['HTTP_HOST'] + '/users/update/foursquare/enable')
+    session[:request_token] = request_token
+    request_token.authorize_url
+  end
+  
+  def twitter_oauth_url
+    client = ::TwitterOAuth::Client.new({
+      :consumer_key    => ENV['twitter_access_token'],
+      :consumer_secret => ENV['twitter_access_secret'],
+      :token           => ENV['twitter_oauth_key'],
+      :secret          => ENV['twitter_oauth_secret']
+    })
+    request_token = client.request_token(:oauth_callback => 'http://' + request.env['HTTP_HOST'] + '/users/update/twitter/enable')
+    session[:request_token] = request_token
+    request_token.authorize_url
+  end
+  
+  def twitter_user
+    client = ::TwitterOAuth::Client.new({
+      :consumer_key    => ENV['twitter_access_token'],
+      :consumer_secret => ENV['twitter_access_secret'],
+      :token           => @current_user.twitter_oauth_token,
+      :secret          => @current_user.twitter_oauth_secret
+    })
+    logger.info '>>>' + client.info.inspect
+  end
 end

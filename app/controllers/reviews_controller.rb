@@ -32,6 +32,7 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.xml
   def create
+    @current_user = session[:current_user]
     @review = Review.new(params[:review])
     @review.user = current_user
     
@@ -61,6 +62,8 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
+        foursquare_checkin unless !@current_user.enable_foursquare
+        tweet unless !current_user.enable_twitter
         flash[:notice] = 'Review posted'
         format.html { redirect_to(@review) }
         format.xml  { render :xml => @review, :status => :created, :location => @review }
@@ -70,4 +73,38 @@ class ReviewsController < ApplicationController
       end
     end
   end
+  
+  private
+    def foursquare_checkin
+      consumer = ::OAuth::Consumer.new(ENV['oauth_key'], ENV['oauth_secret'], {
+        :site               => 'http://foursquare.com',
+        :scheme             => :header,
+        :http_method        => :post,
+        :request_token_path => '/oauth/request_token',
+        :access_token_path  => '/oauth/access_token',
+        :authorize_path     => '/mobile/oauth/authenticate',
+        :proxy              => (ENV['HTTP_PROXY'] || ENV['http_proxy'])
+      })
+      access_token = ::OAuth::AccessToken.new(consumer,
+                                              @current_user.foursquare_oauth_token, @current_user.foursquare_oauth_secret)
+      result = access_token.post('https://api.foursquare.com/v1/checkin?vid=' + @review.venue_id.to_s + '&twitter=0&facebook=0').body
+    end
+    
+    def tweet
+      client = TwitterOAuth::Client.new({
+        :consumer_key    => ENV['twitter_access_token'],
+        :consumer_secret => ENV['twitter_access_secret'],
+        :token           => @current_user.twitter_oauth_token,
+        :secret          => @current_user.twitter_oauth_secret
+      })
+      
+      if (@review.liked == 1)
+        liked = 'Liked'
+      elsif (@review.liked == 0)
+        liked = 'Didn\'t care for'
+      else
+        return
+      end
+      logger.info liked + ' the ' + @review.menu_item.downcase + ' at ' + @review.place.name + ' using the @EatDrinkit web app (http://eatdrink.it/reviews/' + @review.id.to_s + ')'
+    end
 end

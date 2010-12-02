@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.login '/login', :controller => 'session', :action => 'new'
   map.logout '/logout', :controller => 'session', :action => 'destroy'
   map.confirm '/confirm/:confirmation_code', :controller => 'users', :action => 'confirm', :confirmation_code => nil
+  map.user_social_update '/users/update/:method/:value', :controller => 'users', :action => 'update_social'
 
   # Forgot Password Resources
   map.resource :password

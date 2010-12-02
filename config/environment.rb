@@ -10,11 +10,15 @@ RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
-ENV['oauth_key'] = '0RYEYEPXJYWGSKPOMOKNH2WV0XBSPHDCWB2BRG520XITTBN0'
-ENV['oauth_secret'] = 'MEWZ1KGL0MYDFZSK1YO143JIKAEIHLH1XMYET3ZGMSUJVUGO'
+ENV['foursquare_oauth_key'] = '0RYEYEPXJYWGSKPOMOKNH2WV0XBSPHDCWB2BRG520XITTBN0'
+ENV['foursquare_oauth_secret'] = 'MEWZ1KGL0MYDFZSK1YO143JIKAEIHLH1XMYET3ZGMSUJVUGO'
+ENV['foursquare_access_token'] = 'ZHBKG3JVOWBMZIWCGAKZFMJNNU5LHJZYEPL45UGDGRAVL45O'
+ENV['foursquare_access_secret'] = 'M12DIPPILIZXXSYL4M1VP1MS5NIV2YPMOSPRHIHCHXXMIPYE'
 
-ENV['access_token'] = 'ZHBKG3JVOWBMZIWCGAKZFMJNNU5LHJZYEPL45UGDGRAVL45O'
-ENV['access_secret'] = 'M12DIPPILIZXXSYL4M1VP1MS5NIV2YPMOSPRHIHCHXXMIPYE'
+ENV['twitter_oauth_key'] = '215179591-oWvUaZ7P8w0gzRD62ipsykvhtxjwUC4f7iaoaKuR'
+ENV['twitter_oauth_secret'] = 'AYqegXkeV0b5yjwNaZSIhahRbhEacw2WaQMVCtaSc'
+ENV['twitter_access_token'] = 'Dv98XmJrTlwrtA46m5qXg'
+ENV['twitter_access_secret'] = 'EwanBFRGaC3xyZqeUOosJFgnKbp0fR554aDkZZQXM3I'
 
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
@@ -36,6 +40,7 @@ Rails::Initializer.run do |config|
 
   config.gem 'foursquare'
   config.gem 'gravtastic', :version => '3.1.0'
+  config.gem 'twitter_oauth'
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.

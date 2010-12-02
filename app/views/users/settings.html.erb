@@ -1,15 +1,36 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#current_user_enable_foursquare").click(function(eventObject) {
+      <% if @current_user.enable_foursquare %>
+        window.location.replace("/users/update/foursquare/disable");
+      <% else %>
+        window.location.replace("<%= @foursquare_oauth_url %>");
+      <% end %>
+    });
+    
+    $("#current_user_enable_twitter").click(function(eventObject) {
+      <% if @current_user.enable_twitter %>
+        window.location.replace("/users/update/twitter/disable");
+      <% else %>
+        window.location.replace("<%= @twitter_oauth_url %>");
+      <% end %>
+    });
+  });
+</script>
+
 <div>
+<div>
+  <%= image_tag @current_user.gravatar_url(:size => 100) %>
+</div>
+  
+<p>
+  <b><%= link_to 'Change Photo (Gravatar)', 'http://www.gravatar.com/', :target => '_new' %></b>
+</p>
+
+<%= error_messages_for :current_user %>
+<%= flash[:notice] %>
 <% form_for :current_user, :url => '/users/update' do |f| %>
-  <%= error_messages_for :current_user %>
-  <%= flash[:notice] %>
-  
-  <div>
-    <%= image_tag @current_user.gravatar_url(:size => 100) %>
-  </div>
-  
-  <p>
-    <b><%= link_to 'Change Photo (Gravatar)', 'http://www.gravatar.com/', :target => '_new' %></b>
-  </p>
+  <h1>Account Info</h1>
   
   <p><label for="email">Email</label><br/>
   <%= f.text_field :email %></p>
@@ -24,5 +45,15 @@
   <%= f.text_field :username %></p>
     
   <p><%= submit_tag 'Update' %></p>
+<% end %>
+<% form_for :current_user do |f| %>
+  <h1>Linked Accounts</h1>
+  <p>
+    <%= f.check_box :enable_foursquare %> <label for="enable_foursquare">Link to your Foursquare account</label>
+  </p>
+  
+  <p>
+    <%= f.check_box :enable_twitter %> <label for="enable_twitter">Link to your Twitter account</label>
+  </p>
 <% end %>
 </div>
