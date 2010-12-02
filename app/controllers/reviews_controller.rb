@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_filter :login_required, :only => [:new, :create]
+  before_filter :clear_sessions, :only => [:create]
   layout 'default'
   
   # GET /reviews/1
@@ -106,5 +107,12 @@ class ReviewsController < ApplicationController
         return
       end
       client.update liked + ' the ' + @review.menu_item.downcase + ' at ' + @review.place.name + ' using the @EatDrinkit web app (http://eatdrink.it/reviews/' + @review.id.to_s + ')'
+    end
+    
+    def clear_sessions
+      current_user = session[:current_user]
+      unless current_user.nil?
+        redirect_to '/logout' if current_user['enable_foursquare'].nil? or current_user['enable_twitter'].nil?
+      end
     end
 end
