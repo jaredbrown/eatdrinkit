@@ -25,7 +25,7 @@ namespace :eatdrinkit do
     end
   end
   
-  ask :default_enable_twitter do
+  task :default_enable_twitter do
     Rake::Task['environment'].invoke
     
     users = User.find(:all)
