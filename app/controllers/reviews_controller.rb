@@ -77,7 +77,7 @@ class ReviewsController < ApplicationController
   
   private
     def foursquare_checkin
-      consumer = ::OAuth::Consumer.new(ENV['oauth_key'], ENV['oauth_secret'], {
+      consumer = ::OAuth::Consumer.new(ENV['foursquare_oauth_key'], ENV['foursquare_oauth_secret'], {
         :site               => 'http://foursquare.com',
         :scheme             => :header,
         :http_method        => :post,
@@ -88,7 +88,7 @@ class ReviewsController < ApplicationController
       })
       access_token = ::OAuth::AccessToken.new(consumer,
                                               @current_user.foursquare_oauth_token, @current_user.foursquare_oauth_secret)
-      result = access_token.post('https://api.foursquare.com/v1/checkin?vid=' + @review.venue_id.to_s + '&twitter=0&facebook=0').body
+      result = access_token.post('http://api.foursquare.com/v1/checkin?vid=' + @review.venue_id.to_s + '&twitter=0&facebook=0')
       logger.info '>>>' + result.inspect
     end
     

@@ -76,9 +76,8 @@ class UsersController < ApplicationController
     end
     
     if params['value'] == 'enable'
-      request_token = session[:request_token]
+      request_token = session[method + '_request_token']
       access_token = request_token.get_access_token :oauth_verifier => params['oauth_verifier']
-      twitter_user
       @current_user['enable_' + method] = true
       @current_user[method + '_oauth_token'] = access_token.token
       @current_user[method + '_oauth_secret'] = access_token.secret
@@ -150,9 +149,8 @@ class UsersController < ApplicationController
       :authorize_path     => '/mobile/oauth/authorize',
       :proxy              => (ENV['HTTP_PROXY'] || ENV['http_proxy'])
     })
-    
     request_token = consumer.get_request_token(:oauth_callback => 'http://' + request.env['HTTP_HOST'] + '/users/update/foursquare/enable')
-    session[:request_token] = request_token
+    session['foursquare_request_token'] = request_token
     request_token.authorize_url
   end
   
@@ -164,18 +162,8 @@ class UsersController < ApplicationController
       :secret          => ENV['twitter_oauth_secret']
     })
     request_token = client.request_token(:oauth_callback => 'http://' + request.env['HTTP_HOST'] + '/users/update/twitter/enable')
-    session[:request_token] = request_token
+    session['twitter_request_token'] = request_token
     request_token.authorize_url
-  end
-  
-  def twitter_user
-    client = ::TwitterOAuth::Client.new({
-      :consumer_key    => ENV['twitter_access_token'],
-      :consumer_secret => ENV['twitter_access_secret'],
-      :token           => @current_user.twitter_oauth_token,
-      :secret          => @current_user.twitter_oauth_secret
-    })
-    logger.info '>>>' + client.info.inspect
   end
   
   def clear_sessions
