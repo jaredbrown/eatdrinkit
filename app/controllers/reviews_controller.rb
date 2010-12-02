@@ -89,6 +89,7 @@ class ReviewsController < ApplicationController
       access_token = ::OAuth::AccessToken.new(consumer,
                                               @current_user.foursquare_oauth_token, @current_user.foursquare_oauth_secret)
       result = access_token.post('https://api.foursquare.com/v1/checkin?vid=' + @review.venue_id.to_s + '&twitter=0&facebook=0').body
+      logger.info '>>>' + result.inspect
     end
     
     def tweet
