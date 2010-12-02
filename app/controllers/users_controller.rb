@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   # Protect these actions behind an admin login
   # before_filter :admin_required, :only => [:suspend, :unsuspend, :destroy, :purge]
   before_filter :find_user, :only => [:show, :suspend, :unsuspend, :destroy, :purge]
+  
+  before_filter :clear_sessions, :only => [:settings]
 
   # GET /users/1
   def show
@@ -174,5 +176,12 @@ class UsersController < ApplicationController
       :secret          => @current_user.twitter_oauth_secret
     })
     logger.info '>>>' + client.info.inspect
+  end
+  
+  def clear_sessions
+    current_user = session[:current_user]
+    unless current_user.nil?
+      redirect_to '/logout' if current_user['enable_foursquare'].nil? or current_user['enable_twitter'].nil?
+    end
   end
 end
